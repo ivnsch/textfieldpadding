@@ -39,7 +39,7 @@ fun App() {
         Box {
             Column(
                 modifier = Modifier
-                    .safeContentPadding()
+//                    .safeContentPadding()
                     .fillMaxSize()
                     .pointerInput(Unit) {
                         detectTapGestures(onTap = {
