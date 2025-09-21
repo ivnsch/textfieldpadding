@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -22,37 +23,39 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 import inputtestdemo.composeapp.generated.resources.Res
 import inputtestdemo.composeapp.generated.resources.compose_multiplatform
+import kotlin.math.log
+import kotlinx.coroutines.flow.first
 
 @Composable
 @Preview
 fun App() {
     var textValue by remember { mutableStateOf("") }
-
-    MaterialTheme {
-        Column(
-            modifier = Modifier
-                .background(MaterialTheme.colorScheme.primaryContainer)
-                .safeContentPadding()
-                .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Box(
+    Scaffold { innerPadding ->
+            Column(
                 modifier = Modifier
-                    .weight(1f)
-                    .fillMaxWidth(),
-                contentAlignment = Alignment.Center
+                    .background(MaterialTheme.colorScheme.primaryContainer)
+                    .safeContentPadding()
+                    .fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                Text("Main content area")
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxWidth(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text("Main content area")
+                }
+
+                OutlinedTextField(
+                    value = textValue,
+                    onValueChange = { textValue = it },
+                    placeholder = { Text("Enter text...") },
+                    modifier = Modifier
+                        .fillMaxWidth().padding(bottom = 20.dp),
+                    singleLine = true
+                )
             }
 
-            OutlinedTextField(
-                value = textValue,
-                onValueChange = { textValue = it },
-                placeholder = { Text("Enter text...") },
-                modifier = Modifier
-                    .fillMaxWidth().padding(bottom = 0.dp),
-                singleLine = true
-            )
-        }
     }
 }
