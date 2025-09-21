@@ -39,7 +39,6 @@ fun App() {
         Box {
             Column(
                 modifier = Modifier
-                    .background(MaterialTheme.colorScheme.primaryContainer)
                     .safeContentPadding()
                     .fillMaxSize()
                     .pointerInput(Unit) {
