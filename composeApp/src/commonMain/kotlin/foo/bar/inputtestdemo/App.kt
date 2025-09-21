@@ -64,7 +64,6 @@ fun App() {
                     placeholder = { Text("Enter text...") },
                     modifier = Modifier
                         .fillMaxWidth().padding(bottom = 20.dp),
-                    singleLine = true
                 )
             }
         }
