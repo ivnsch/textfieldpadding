@@ -36,6 +36,7 @@ fun App() {
     val focusManager = LocalFocusManager.current
 
     Scaffold { innerPadding ->
+        Box {
             Column(
                 modifier = Modifier
                     .background(MaterialTheme.colorScheme.primaryContainer)
@@ -66,6 +67,6 @@ fun App() {
                     singleLine = true
                 )
             }
-
+        }
     }
 }
