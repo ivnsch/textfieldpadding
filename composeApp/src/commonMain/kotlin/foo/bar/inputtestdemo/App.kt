@@ -62,7 +62,8 @@ fun App() {
                     onValueChange = { textValue = it },
                     placeholder = { Text("Enter text...") },
                     modifier = Modifier
-                        .fillMaxWidth().padding(bottom = 20.dp),
+                        .fillMaxWidth()
+                        .padding(bottom = 20.dp),
                 )
             }
         }
