@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.Scaffold
@@ -33,7 +34,7 @@ fun App() {
         Box {
             Column(
                 modifier = Modifier
-//                    .safeContentPadding()
+                    .imePadding()
                     .fillMaxSize()
                     .pointerInput(Unit) {
                         detectTapGestures(onTap = {
