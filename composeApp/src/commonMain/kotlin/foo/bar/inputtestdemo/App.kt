@@ -6,10 +6,12 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -31,39 +33,48 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Composable
 @Preview
 fun App() {
-    val focusManager = LocalFocusManager.current
-
     Scaffold(
         topBar = {
             Column {
                 TopAppBar(title = { Text("topbar") })
             }
-        }
+        },
+        bottomBar = { TabsBar() }
     ) { innerPadding ->
 
-        Box {
-            Column(
-                modifier = Modifier
-                    .imePadding()
-                    .fillMaxSize()
-                    .pointerInput(Unit) {
-                        detectTapGestures(onTap = {
-                            focusManager.clearFocus()
-                        })
-                    },
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-                Box(
-                    modifier = Modifier
-                        .weight(1f)
-                        .fillMaxWidth(),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text("Main content area")
-                }
+//      Box(modifier = Modifier.fillMaxSize()) {
+        Box(modifier = Modifier.padding(innerPadding)) {
+//      Box {
+            Contents()
+        }
+    }
+}
 
-                BasicText()
+@Composable
+private fun Contents() {
+    val focusManager = LocalFocusManager.current
+
+    Box {
+        Column(
+            modifier = Modifier
+                .imePadding()
+                .fillMaxSize()
+                .pointerInput(Unit) {
+                    detectTapGestures(onTap = {
+                        focusManager.clearFocus()
+                    })
+                },
+        ) {
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth(),
+                contentAlignment = Alignment.Center
+            ) {
+                Text("Main content area")
             }
+
+            BasicText()
         }
     }
 }
@@ -78,17 +89,16 @@ private fun BasicText() {
         value = textState,
         onValueChange = { textState = it },
         modifier = Modifier
+            .height(60.dp)
             .fillMaxWidth()
-            .padding(bottom = 20.dp), // ignored
-        decorationBox = { innerTextField ->
-            Box(
-                modifier = Modifier
-                    .background(Color.Yellow)
-                    .padding(bottom = 40.dp)
-            ) {
-                Text(text = "...")
-                innerTextField()
-            }
-        }
+            .background(Color.Yellow),
     )
+}
+
+@Composable
+fun TabsBar() {
+    NavigationBar(
+        modifier = Modifier.height(100.dp),
+        containerColor = Color.Green,
+    ) { }
 }
