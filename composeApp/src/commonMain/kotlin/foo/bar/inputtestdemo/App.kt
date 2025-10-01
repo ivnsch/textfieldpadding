@@ -8,8 +8,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.material3.LocalTextStyle
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,12 +18,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -73,20 +69,13 @@ private fun BasicText() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(bottom = 20.dp), // ignored
-        cursorBrush = SolidColor(MaterialTheme.colorScheme.primary),
-        textStyle = LocalTextStyle.current.copy(
-            color = Color.Gray,
-            fontSize = 16.sp
-        ),
         decorationBox = { innerTextField ->
-            Box(modifier = Modifier
-                .background(Color.Yellow)
-                .padding(bottom = 40.dp)) {
-                Text(
-                    text ="...",
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    style = LocalTextStyle.current.copy(fontSize = 16.sp)
-                )
+            Box(
+                modifier = Modifier
+                    .background(Color.Yellow)
+                    .padding(bottom = 40.dp)
+            ) {
+                Text(text = "...")
                 innerTextField()
             }
         }
